@@ -6,7 +6,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-// test for changes in git
+// test for changes in git added for additional test
 public class MainActivity extends AppCompatActivity {
 
     @Override
