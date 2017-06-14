@@ -6,6 +6,12 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+
+/***
+/**
+ * TODO add database for strength training and Cardio training
+ * TODO check in Pycolib how to add db
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<NavItem> navItems = new ArrayList<NavItem>();
         navItems.add(new NavItem("Cardio", "#FFFFFF", "#F50057" ));
         navItems.add(new NavItem("Strength", "#FFFFFF", "#fd8e09"));
+
+        //TODO add two more navigation items for "Flexibity" and "Balance"
 
 
         // WordAdapter adapter = new WordAdapter(this, words, R.color.category_cardio_rehab);
