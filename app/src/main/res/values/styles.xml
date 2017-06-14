@@ -8,14 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="cardioTextBG">
-        <item name="android:textColor">@color/textColorCardio</item>
-        <item name="android:background">@color/bgColorCardio</item>
-    </style>
-
-    <style name="strengthTextBG">
-        <item name="android:textColor">@color/textColorStrength</item>
-        <item name="android:background">@color/bgColorStrength</item>
-    </style>
-
 </resources>
