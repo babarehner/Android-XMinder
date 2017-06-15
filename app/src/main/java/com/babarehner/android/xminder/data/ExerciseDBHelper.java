@@ -17,6 +17,8 @@ import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry
  * Created by mike on 6/14/17.
  */
 
+
+// TODO Take a long look at the DB DESIGN and see if I can rework it similatr to ACCESS DB
 public class ExerciseDBHelper extends SQLiteOpenHelper {
 
     public static final String LOG_TAG = ExerciseDBHelper.class.getSimpleName();

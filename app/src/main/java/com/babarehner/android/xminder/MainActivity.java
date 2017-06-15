@@ -10,7 +10,6 @@ import java.util.ArrayList;
 /***
 /**
  * TODO add database for strength training and Cardio training
- * TODO check in Pycolib how to add db
  */
 public class MainActivity extends AppCompatActivity {
 
