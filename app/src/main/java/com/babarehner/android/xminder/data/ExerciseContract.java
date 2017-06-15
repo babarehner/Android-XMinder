@@ -62,11 +62,12 @@ public final class ExerciseContract {
         // primary key to be autoincrements.
         // I think BaseColumns are required for ContentProviders
         public static final String _IDS = BaseColumns._ID;
-        public static final String NUM = "Num";
-        public static final String EX_NAME = "ExName";
-        public static final String WEIGHT = "Weight";
-        public static final String REPS = "Reps";
-        public static final String NOTE = "Note";
+        public static final String C_ORDER = "Order";
+        public static final String C_EX_NAME = "ExName";
+        public static final String C_WEIGHT = "Weight";
+        public static final String C_REPS = "Reps";
+        public static final String C_GRAPHIC = "Graphic";
+        public static final String C_NOTE = "Note";
 
         // name of table for cardio training
         public static final String TCARDIO = "TCardio";

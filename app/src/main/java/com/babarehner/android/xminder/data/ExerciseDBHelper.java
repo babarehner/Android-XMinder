@@ -4,12 +4,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.EX_NAME;
-import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.NOTE;
-import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.NUM;
-import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.REPS;
+import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_EX_NAME;
+import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_GRAPHIC;
+import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_NOTE;
+import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_ORDER;
+import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_REPS;
+import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_WEIGHT;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.TSTRENGTH;
-import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.WEIGHT;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry._IDS;
 
 /**
@@ -33,11 +34,14 @@ public class ExerciseDBHelper extends SQLiteOpenHelper {
         String SQL_CREATE_STRENGTH_TABE = "CREATE TABLE " + TSTRENGTH
                 + "("
                 + _IDS + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + NUM  + " INTEGER AUTOINCREMENT, "
-                + EX_NAME + " TEXT NOT NULL, "
-                + WEIGHT + " INTEGER "
-                + REPS + " INTEGER"
-                + NOTE + " TEXT);";
+                + C_ORDER  + " INTEGER AUTOINCREMENT, "
+                + C_EX_NAME + " TEXT NOT NULL, "
+                + C_WEIGHT + " INTEGER "
+                + C_REPS + " INTEGER "
+                + C_GRAPHIC + " TEXT, "
+                + C_NOTE + " TEXT);";
+
+        // TODO Design and build CARDIO table
 
     }
 
