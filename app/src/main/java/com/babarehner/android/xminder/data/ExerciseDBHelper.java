@@ -33,7 +33,7 @@ public class ExerciseDBHelper extends SQLiteOpenHelper {
     // SQL statements to create the tables and columsn in the DB
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_CREATE_STRENGTH_TABE = "CREATE TABLE " + TSTRENGTH
+        String SQL_CREATE_STRENGTH_TABLE = "CREATE TABLE " + TSTRENGTH
                 + "("
                 + _IDS + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + C_ORDER  + " INTEGER AUTOINCREMENT, "
