@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">XMinder</string>
+
+    <string name="empty_view_title_text">OH NO Mr. Bill I\'m a lonely at the gym with no exercises!!!</string>
+    <!-- Subtitle text for the empty view that prompts the user to add a pet [CHAR LIMIT=50] -->
+    <string name="empty_view_subtitle_text">Please get started by adding an exercise!</string>
+
 </resources>

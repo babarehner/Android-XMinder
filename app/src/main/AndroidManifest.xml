@@ -15,6 +15,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".StrengthActivity"
+            android:parentActivityName=".MainActivity">
+
+            <!-- Parent activity metaadata to support Android 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StrengthActivity" />
+        </activity>
+
+        <activity
+            android:name=".StrengthExActivity"
+            android:parentActivityName=".StrengthActivity">
+
+            <!-- Parent activity metaadata to support Android 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StrengthExActivity" />
+        </activity>
     </application>
 
 
