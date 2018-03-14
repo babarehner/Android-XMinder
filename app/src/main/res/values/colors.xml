@@ -8,4 +8,6 @@
     <color name="colorCardio">#F50057</color>
     <color name="colorStrength">#FD8E09</color>
 
+    <color name="editColorText">#003366</color>
+
 </resources>

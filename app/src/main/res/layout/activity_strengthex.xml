@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context=".StrengthExActivity">
+
+
+    <!-- Exercise Name, Weights and Reps -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/exercise"
+            style="@style/ExerciseStyle" />
+
+        <!-- Input Exercise Fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <!-- Exercise Name Field -->
+            <EditText
+                android:id="@+id/edit_ex_name"
+                android:hint="@string/hint_ex_name"
+                android:inputType="textCapWords"
+                style="@style/ExerciseFieldStyle" />
+
+            <!-- Amount of weight -->
+            <EditText
+                android:id="@+id/edit_weight_amnt"
+                android:hint="@string/hint_weight_amnt"
+                android:inputType="textCapWords"
+                style="@style/ExerciseFieldStyle" />
+
+            <!-- Amount of weight -->
+            <EditText
+                android:id="@+id/edit_reps_num"
+                android:hint="@string/hint_reps_num"
+                android:inputType="textCapWords"
+                style="@style/ExerciseFieldStyle" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""/>
+
+        <Button
+            android:id="@+id/pick_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="false"
+            android:layout_centerHorizontal="true"
+            android:text="Date" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <!-- Label -->
+        <TextView
+            android:text="Notes:"
+            android:layout_width="wrap_content"
+            android:textColor="@color/editColorText"
+            android:fontFamily="sans-serif-medium"
+            android:textAppearance="?android:textAppearanceSmall"
+            style="@style/ExerciseStyle"/>
+
+
+        <EditText
+            android:id="@+id/notes"
+            android:hint="Enter notes here"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="2"/>
+    </LinearLayout>
+
+
+</LinearLayout>

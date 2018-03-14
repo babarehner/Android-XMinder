@@ -24,7 +24,6 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
 
     private EditText mNameEditText;
     private EditText mText;
-    private Spinner mPublishYearSpinner;
     private EditText mDurationEditText;
 
     private boolean mExerciseChanged = false;   // When edit change made to a book row
@@ -38,11 +37,14 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         }
     };
 
-    /*
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book);
+        setContentView(R.layout.activity_strengthex);
 
+    }
+
+    /*
         //Get intent and get data from intent
         Intent intent = getIntent();
         mCurrentBookUri = intent.getData();
