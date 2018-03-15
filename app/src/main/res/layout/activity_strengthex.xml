@@ -53,8 +53,6 @@
         </LinearLayout>
 
 
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -94,7 +92,7 @@
 
 
         <EditText
-            android:id="@+id/notes"
+            android:id="@+id/edit_notes"
             android:hint="Enter notes here"
             android:inputType="textMultiLine"
             android:layout_width="match_parent"

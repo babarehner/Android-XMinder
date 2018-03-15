@@ -11,5 +11,7 @@
     <string name="hint_ex_name">Enter Exercise Name here</string>
     <string name="hint_weight_amnt">Enter Weights Amount</string>
     <string name="hint_reps_num">Enter Number of Repititions</string>
+    <string name="strengthex_activity_title_add_exercise">Add Exercise</string>
+    <string name="strengthex_activity_title_edit_exercise">Edit Exercise</string>
 
 </resources>
