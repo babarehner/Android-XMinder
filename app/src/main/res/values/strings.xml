@@ -13,5 +13,7 @@
     <string name="hint_reps_num">Enter Number of Repititions</string>
     <string name="strengthex_activity_title_add_exercise">Add Exercise</string>
     <string name="strengthex_activity_title_edit_exercise">Edit Exercise</string>
+    <string name="action_save">Save Exercise</string>
+    <string name="action_delete">Delete Exercise</string>
 
 </resources>
