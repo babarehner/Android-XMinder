@@ -57,6 +57,10 @@ public final class ExerciseContract {
         public static final String CARDIO_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
                 + "/" + CONTENT_AUTHORITY + "/" + PATH_CARDIO;
 
+        // The content uri to access the exercise data in the provider
+        public static final Uri EXERCISE_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_STRENGTH);
+        public static final Uri CARDIO_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_CARDIO);
+
         // Name of table for strength training
         public static final String TSTRENGTH = "TStrength";
         // primary key to be autoincrements.
@@ -67,7 +71,8 @@ public final class ExerciseContract {
         public static final String C_WEIGHT = "Weight";
         public static final String C_REPS = "Reps";
         public static final String C_GRAPHIC = "Graphic";
-        public static final String C_NOTE = "Note";
+        public static final String C_NOTE = "Notes";
+        public static final String C_DATE = "Date";
 
         // name of table for cardio training
         public static final String TCARDIO = "TCardio";
