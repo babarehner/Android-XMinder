@@ -35,6 +35,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".StrengthExActivity" />
         </activity>
+
+        <provider
+            android:name=".data.ExerciseProvider"
+            android:authorities="com.babarehner.android.xminder"
+            android:exported="false" />
     </application>
 
 

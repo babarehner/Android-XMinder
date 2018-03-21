@@ -6,7 +6,7 @@
     <string name="empty_view_subtitle_text">Please get started by adding an exercise!</string>
 
 
-    <!-- activity strength_ex.html -->
+    <!-- strength_ex -->
     <string name="exercise">Exercise:</string>
     <string name="hint_ex_name">Enter Exercise Name here</string>
     <string name="hint_weight_amnt">Enter Weights Amount</string>
@@ -15,5 +15,18 @@
     <string name="strengthex_activity_title_edit_exercise">Edit Exercise</string>
     <string name="action_save">Save Exercise</string>
     <string name="action_delete">Delete Exercise</string>
+    <string name="missing_exercise_name">Exercise Name Required</string>
+    <string name="strengthex_insert_exercise_good">Exercise inserted into DB</string>
+    <string name="strengthex_insert_exercise_failed">Exercise not saved in DB</string>
+    <string name="edit_update_strengthex_failed">Update of exercise failed in DB</string>
+    <string name="edit_update_strengthex_success">Update of exercise succeeded in DB</string>
+    <string name="delete_dialog_msg">Delete this exercise</string>
+    <string name="delete">Delete</string>
+    <string name="delete_exercise_failure">Exercise not deleted from DB</string>
+    <string name="delete_exercise_successful">Exercise deleted from DB</string>
+    <string name="cancel">Cancel</string>
+    <string name="unsaved_changes_dialog_msg">Discard changes, Quit editing</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep editing</string>
 
 </resources>

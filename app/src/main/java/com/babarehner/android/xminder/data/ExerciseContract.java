@@ -28,14 +28,9 @@ public final class ExerciseContract {
      */
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
-    /**
-     * Possible pathe appended to base content URIs for possible URIs. For instance,
-     * content.com.babarehner.android.xminder/couchpotato will fail because the
-     * ContentProvider hasn't been given any information on what to do with
-     * "couchpotato"
-     */
-    public static final String PATH_STRENGTH = "TStrength";
-    public static final String PATH_CARDIO = "TCardio";
+    // Usually is the table name you want to access- make sure you have the provider listed in the Manifest file
+    public static final String PATH_TSTRENGTH = "TStrength";
+    public static final String PATH_TCARDIO = "Cardio";
 
 
     /**
@@ -46,32 +41,32 @@ public final class ExerciseContract {
 
         // The MIME type if the {@link #CONTENT_URI} for a list of Strength Exercises
         public static final String STRENGTH_LIST_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
-                + "/" + CONTENT_AUTHORITY + "/" + PATH_STRENGTH;
+                + "/" + CONTENT_AUTHORITY + "/" + PATH_TSTRENGTH;
         // The MIME type if the {@link #CONTENT_URI} for a list of Strength Exercises
         public static final String CARDIO_LIST_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
-                + "/" + CONTENT_AUTHORITY + "/" + PATH_CARDIO;
+                + "/" + CONTENT_AUTHORITY + "/" + PATH_TCARDIO;
         // The MIME type if the {@link #CONTENT_URI} for a single Strength Exercises
         public static final String STRENGTH_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
-                + "/" + CONTENT_AUTHORITY + "/" + PATH_STRENGTH;
+                + "/" + CONTENT_AUTHORITY + "/" + PATH_TSTRENGTH;
         // The MIME type if the {@link #CONTENT_URI} for a single Strength Exercises
         public static final String CARDIO_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
-                + "/" + CONTENT_AUTHORITY + "/" + PATH_CARDIO;
+                + "/" + CONTENT_AUTHORITY + "/" + PATH_TCARDIO;
 
         // The content uri to access the exercise data in the provider
-        public static final Uri EXERCISE_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_STRENGTH);
-        public static final Uri CARDIO_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_CARDIO);
+        public static final Uri STRENGTH_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_TSTRENGTH);
+        public static final Uri CARDIO_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_TCARDIO);
 
         // Name of table for strength training
         public static final String TSTRENGTH = "TStrength";
         // primary key to be autoincrements.
         // I think BaseColumns are required for ContentProviders
         public static final String _IDS = BaseColumns._ID;
-        public static final String C_ORDER = "Order";
+        public static final String C_ORDER = "ListOrder";
         public static final String C_EX_NAME = "ExName";
         public static final String C_WEIGHT = "Weight";
         public static final String C_REPS = "Reps";
         public static final String C_GRAPHIC = "Graphic";
-        public static final String C_NOTE = "Notes";
+        public static final String C_NOTES = "Notes";
         public static final String C_DATE = "Date";
 
         // name of table for cardio training

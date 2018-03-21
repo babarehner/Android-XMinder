@@ -1,8 +1,10 @@
 package com.babarehner.android.xminder;
 
+import android.app.Dialog;
 import android.app.DatePickerDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
@@ -10,8 +12,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,6 +26,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.babarehner.android.xminder.data.ExerciseContract;
+
 import java.util.Calendar;
 
 /**
@@ -30,8 +36,8 @@ import java.util.Calendar;
 
 public class StrengthExActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    public static final int EXISTING_EXERCISE_LOADER = 0;
-    private Uri mCurrentStrengthUri = null;
+    public static final int EXISTING_EXERCISE_LOADER = 9;
+
     private Uri mCurrentStrengthExUri;
 
     private EditText mExNameEditText;
@@ -43,7 +49,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
     private Button pickDate;
     private int mYear, mMonth, mDay;
 
-    static final int DATE_DIALOG_ID = 0;
+    static final int DATE_DIALOG_ID = 99;
 
     private boolean mExerciseChanged = false;   // When edit change made to an exercise row
 
@@ -64,6 +70,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         //Get intent and get data from intent
         Intent intent = getIntent();
         mCurrentStrengthExUri = intent.getData();
+        // String str = mCurrentStrengthExUri.toString();
 
         // If the intent does not contain a single item Uri FAB clicked
         if (mCurrentStrengthExUri == null) {
@@ -71,14 +78,14 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
             setTitle(getString(R.string.strengthex_activity_title_add_exercise));
             // take out the delete menu
             invalidateOptionsMenu();
-        } else {                            // set page header to edit exercise
+        } else {
+            // set page header to edit exercise
             setTitle(getString(R.string.strengthex_activity_title_edit_exercise));
             getLoaderManager().initLoader(EXISTING_EXERCISE_LOADER, null, StrengthExActivity.this);
         }
 
         // initialization required or it crashes
         tvDate = (TextView) findViewById(R.id.tvDate);
-
         // Find all input views to read from
         mExNameEditText = (EditText) findViewById(R.id.edit_ex_name);
         mWeightEditText = (EditText) findViewById(R.id.edit_weight_amnt);
@@ -92,21 +99,54 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         mNotesEditText.setOnTouchListener(mTouchListener);
         tvDate.setOnTouchListener(mTouchListener);
 
-        getDate();      // use date picker and display date as text
+        getDate();
     }
 
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return null;
+        String[] projection = {ExerciseContract.ExerciseEntry._IDS,
+                ExerciseContract.ExerciseEntry.C_ORDER,
+                ExerciseContract.ExerciseEntry.C_EX_NAME,
+                ExerciseContract.ExerciseEntry.C_WEIGHT,
+                ExerciseContract.ExerciseEntry.C_GRAPHIC,
+                ExerciseContract.ExerciseEntry.C_REPS,
+                ExerciseContract.ExerciseEntry.C_DATE,
+                ExerciseContract.ExerciseEntry.C_NOTES };
+        // start a new thread
+        return new CursorLoader(this, mCurrentStrengthExUri, projection, null, null, null);
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        if (cursor.moveToFirst()){
-        }
+    public void onLoadFinished(Loader<Cursor> loader, Cursor c) {
+        // move to the only row in the cursor
+        if (c.moveToFirst()) {
+            int exOrderColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_ORDER);
+            int exNameColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_EX_NAME);
+            int exWeightColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_WEIGHT);
+            int exRepsColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_REPS);
+            int exGraphic = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_GRAPHIC);
+            int exDateColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_DATE);
+            int exNoteColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_NOTES);
 
+            // use index to pull data out
+            String exOrder = getString(exOrderColIndex);
+            Log.v("*********", exOrder);
+            String exName = getString(exNameColIndex);
+            String exWeight = getString(exWeightColIndex);
+            String exReps = getString(exRepsColIndex);
+            String exDate = getString(exDateColIndex);
+            String exNote = getString(exNoteColIndex);
+
+            // update the textviews
+            mExNameEditText.setText(exName);
+            mWeightEditText.setText(exWeight);
+            mRepsEditText.setText(exReps);
+            mNotesEditText.setText(exNote);
+            tvDate.setText(exDate);
+        }
     }
+
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
@@ -161,6 +201,14 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
                 }
             };
 
+    // Dialog needed to lauch date picker
+    protected Dialog onCreateDialog(int id){
+        if (DATE_DIALOG_ID == 99) {
+            return new DatePickerDialog(this, DateSetListener, mYear, mMonth, mDay);
+        }
+        return null;
+    }
+
     //TODO change save checkmart to white color
     @Override   // show the options menu
     public boolean onCreateOptionsMenu(Menu m) {
@@ -180,7 +228,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
     }
 
 
-    /*
+
     @Override        // Select from the options menu
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -214,58 +262,139 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         }
         return super.onOptionsItemSelected(item);
     }
-    */
 
 
-    /*
-    private void saveExercise(){
+    private void saveExercise() {
 
         // read from EditText input fields
-        String titleString = mTitleEditText.getText().toString().trim();
-        String authorString = mAuthorEditText.getText().toString().trim();
-        //String publishYearString = String.valueOf(mPublishYear);
-        String borrowerString = mBorrowerEditText.getText().toString().trim();
+        String exNameString = mExNameEditText.getText().toString().trim();
+        String weightString = mWeightEditText.getText().toString().trim();
+        String repsString = mRepsEditText.getText().toString().trim();
+        String notesString = mNotesEditText.getText().toString().trim();
+        String dateString = tvDate.getText().toString().trim();
 
-        // if adding book and the title field is left blank do nothing
-        if (mCurrentBookUri == null && TextUtils.isEmpty(titleString)) {
-            Toast.makeText(this, getString(R.string.missing_book_title),
+
+        // if adding exercise and the name field is left blank do nothing
+        if (mCurrentStrengthExUri == null && TextUtils.isEmpty(exNameString)) {
+            Toast.makeText(this, getString(R.string.missing_exercise_name),
                     Toast.LENGTH_SHORT).show();
             return;
         }
 
         ContentValues values = new ContentValues();
-        values.put(LibraryContract.LibraryEntry.COL_TITLE, titleString);
-        values.put(LibraryContract.LibraryEntry.COL_AUTHOR, authorString);
-        values.put(LibraryContract.LibraryEntry.COL_YEAR_PUBLISHED, mPublishYear);
-        //Log.v("BookActivity"," mPublishYear " + mPublishYear);
-        values.put(LibraryContract.LibraryEntry.COL_STATUS, borrowerString);
+        values.put(ExerciseContract.ExerciseEntry.C_EX_NAME, exNameString);
+        values.put(ExerciseContract.ExerciseEntry.C_WEIGHT, weightString);
+        values.put(ExerciseContract.ExerciseEntry.C_REPS, repsString);
+        values.put(ExerciseContract.ExerciseEntry.C_NOTES, notesString);
+        values.put(ExerciseContract.ExerciseEntry.C_DATE, dateString);
 
-        if (mCurrentBookUri == null) {
-            // a new book
-            Uri newUri = getContentResolver().insert(LibraryContract.LibraryEntry.CONTENT_URI, values);
+        if (mCurrentStrengthExUri == null) {
+            // a new exercise
+            Uri newUri = getContentResolver().insert(ExerciseContract.ExerciseEntry.STRENGTH_URI, values);
             if (newUri == null) {
-                Toast.makeText(this, getString(R.string.library_provider_insert_book_failed),
+                Toast.makeText(this, getString(R.string.strengthex_insert_exercise_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, getString(R.string.library_provider_insert_book_good),
+                Toast.makeText(this, getString(R.string.strengthex_insert_exercise_good),
                         Toast.LENGTH_SHORT).show();
             }
         } else {
             // existing book so update with content URI and pass in ContentValues
-            int rowsAffected = getContentResolver().update(mCurrentBookUri, values, null, null);
+            int rowsAffected = getContentResolver().update(mCurrentStrengthExUri, values, null, null);
             if (rowsAffected == 0) {
                 // TODO Check db- Text Not Null does not seem to be working or entering
                 // "" does not mean NOT Null- there must be an error message closer to the db!!!
-                Toast.makeText(this, getString(R.string.edit_update_book_failed),
+                Toast.makeText(this, getString(R.string.edit_update_strengthex_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, getString(R.string.edit_update_book_success),
+                Toast.makeText(this, getString(R.string.edit_update_strengthex_success),
                         Toast.LENGTH_SHORT).show();
             }
 
         }
+    }
 
-    */
 
+    // delete exercise from DB
+    private void deleteExercise(){
+        if (mCurrentStrengthExUri != null) {
+            int rowsDeleted = getContentResolver().delete(mCurrentStrengthExUri, null, null);
+            if (rowsDeleted == 0) {
+                Toast.makeText(this, getString(R.string.delete_exercise_failure),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, getString(R.string.delete_exercise_successful),
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+        finish();
+    }
+
+
+    private void showDeleteConfirmationDialog() {
+        // Create an AlertDialog.Builder, set message and click
+        // listeners for positive and negative buttons
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_dialog_msg);
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // User clicked delet so delete
+                deleteExercise();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // user clicked cancel, dismiss dialog, continue editing
+                if (dialog != null) {dialog.dismiss();}
+            }
+        });
+        // Create and show dialog
+        AlertDialog alertD = builder.create();
+        alertD.show();
+    }
+
+
+    private void showUnsavedChangesDialog(DialogInterface.OnClickListener discardButtonClickListener){
+        // Create AlertDialogue.Builder amd set message and click listeners
+        // for positive and negative buttons in dialogue.
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.unsaved_changes_dialog_msg);
+        builder.setPositiveButton(R.string.discard, discardButtonClickListener);
+        builder.setNegativeButton(R.string.keep_editing, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                // user clicked the "keep eiditing" button. Dismiss dialog and keep editing
+                if (dialog !=null) { dialog.dismiss();}
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+    // Override the activity's normal back button. If book has changed create a
+    // discard click listener that closed current activity.
+    @Override
+    public void onBackPressed() {
+        if (!mExerciseChanged) {
+            super.onBackPressed();
+            return;
+        }
+        //otherwise if there are unsaved changes setup a dialog to warn the  user
+        //handles the user confirming that changes should be made
+        DialogInterface.OnClickListener discardButtonClickListener =
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        // user clicked "Discard" button, close the current activity
+                        finish();
+                    }
+                };
+        // show dialog that there are unsaved changes
+        showUnsavedChangesDialog(discardButtonClickListener);
+    }
 
 }

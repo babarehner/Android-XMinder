@@ -4,9 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_DATE;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_EX_NAME;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_GRAPHIC;
-import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_NOTE;
+import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_NOTES;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_ORDER;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_REPS;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_WEIGHT;
@@ -36,12 +37,15 @@ public class ExerciseDBHelper extends SQLiteOpenHelper {
         String SQL_CREATE_STRENGTH_TABLE = "CREATE TABLE " + TSTRENGTH
                 + "("
                 + _IDS + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + C_ORDER  + " INTEGER AUTOINCREMENT, "
+                + C_ORDER  + " INTEGER, "
                 + C_EX_NAME + " TEXT NOT NULL, "
-                + C_WEIGHT + " INTEGER "
-                + C_REPS + " INTEGER "
+                + C_WEIGHT + " INTEGER, "
+                + C_REPS + " INTEGER, "
                 + C_GRAPHIC + " TEXT, "
-                + C_NOTE + " TEXT);";
+                + C_NOTES + " TEXT, "
+                + C_DATE + " TEXT);";
+
+        db.execSQL(SQL_CREATE_STRENGTH_TABLE);
 
         // TODO Design and build CARDIO table
 

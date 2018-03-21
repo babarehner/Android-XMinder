@@ -49,7 +49,7 @@ public class ExerciseProvider extends ContentProvider {
     static {
         /**
          * The calls to addURi() go here for all of the content URi patterns that the
-         * proveder should recognize. All paths added to the urimatcher should have a
+         * provider should recognize. All paths added to the urimatcher should have a
          * corresponding code to return when a match is found.
          */
         sUriMatcher.addURI(CONTENT_AUTHORITY, PATH_TSTRENGTH, STRENGTH_LIST);
@@ -104,7 +104,7 @@ public class ExerciseProvider extends ContentProvider {
                 throw new IllegalArgumentException(" Cannnot query with unknown URI " + uri);
         }
 
-        // Set notification urI on the cursor so we know what content th4 UrI the curwor
+        // Set notification urI on the cursor so we know what content the Uri the cursor
         //was created for. If the data at this URI changes, then we need to update the cursor
         c.setNotificationUri(getContext().getContentResolver(), uri);
 
