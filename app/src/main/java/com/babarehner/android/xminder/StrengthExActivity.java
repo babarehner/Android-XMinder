@@ -72,7 +72,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         mCurrentStrengthExUri = intent.getData();
         // String str = mCurrentStrengthExUri.toString();
 
-        // If the intent does not contain a single item Uri FAB clicked
+        // If the intent does not contain a single item-  Uri FAB clicked
         if (mCurrentStrengthExUri == null) {
             // set page header to add exercise
             setTitle(getString(R.string.strengthex_activity_title_add_exercise));
@@ -106,10 +106,8 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         String[] projection = {ExerciseContract.ExerciseEntry._IDS,
-                ExerciseContract.ExerciseEntry.C_ORDER,
                 ExerciseContract.ExerciseEntry.C_EX_NAME,
                 ExerciseContract.ExerciseEntry.C_WEIGHT,
-                ExerciseContract.ExerciseEntry.C_GRAPHIC,
                 ExerciseContract.ExerciseEntry.C_REPS,
                 ExerciseContract.ExerciseEntry.C_DATE,
                 ExerciseContract.ExerciseEntry.C_NOTES };
@@ -121,22 +119,18 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
     public void onLoadFinished(Loader<Cursor> loader, Cursor c) {
         // move to the only row in the cursor
         if (c.moveToFirst()) {
-            int exOrderColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_ORDER);
             int exNameColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_EX_NAME);
             int exWeightColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_WEIGHT);
             int exRepsColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_REPS);
-            int exGraphic = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_GRAPHIC);
             int exDateColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_DATE);
             int exNoteColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_NOTES);
 
-            // use index to pull data out
-            String exOrder = getString(exOrderColIndex);
-            Log.v("*********", exOrder);
-            String exName = getString(exNameColIndex);
-            String exWeight = getString(exWeightColIndex);
-            String exReps = getString(exRepsColIndex);
-            String exDate = getString(exDateColIndex);
-            String exNote = getString(exNoteColIndex);
+            // use index to pull data out of the cursor
+            String exName = c.getString(exNameColIndex);
+            String exWeight = c.getString(exWeightColIndex);
+            String exReps = c.getString(exRepsColIndex);
+            String exDate = c.getString(exDateColIndex);
+            String exNote = c.getString(exNoteColIndex);
 
             // update the textviews
             mExNameEditText.setText(exName);
@@ -158,7 +152,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         tvDate.setText("");
     }
 
-    // get up date picker
+    // set up date picker
     public void getDate() {
 
         tvDate = (TextView) findViewById(R.id.tvDate);
@@ -201,9 +195,10 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
                 }
             };
 
-    // Dialog needed to lauch date picker
+    // Dialog needed to launch date picker called by showDialog()
+    @Override
     protected Dialog onCreateDialog(int id){
-        if (DATE_DIALOG_ID == 99) {
+        if (id == DATE_DIALOG_ID) {
             return new DatePickerDialog(this, DateSetListener, mYear, mMonth, mDay);
         }
         return null;

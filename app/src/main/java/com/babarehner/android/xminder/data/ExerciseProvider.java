@@ -113,7 +113,7 @@ public class ExerciseProvider extends ContentProvider {
 
 
 
-    // TODO implement insert
+
     public Uri insert(Uri uri, ContentValues values) {
         final int match = sUriMatcher.match(uri);
         switch (match){
@@ -193,7 +193,7 @@ public class ExerciseProvider extends ContentProvider {
             String exName = values.getAsString(ExerciseContract.ExerciseEntry.C_EX_NAME);
             // check again
             if (exName == null){
-                throw new IllegalArgumentException("Exercise requires a name in updatStrengthEx");
+                throw new IllegalArgumentException("Exercise requires a name in updateStrengthEx");
             }
         }
 
