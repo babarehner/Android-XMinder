@@ -43,6 +43,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
     private EditText mExNameEditText;
     private EditText mWeightEditText;
     private EditText mRepsEditText;
+    private EditText mSetsEditText;
     private EditText mNotesEditText;
 
     private TextView tvDate;
@@ -90,12 +91,14 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         mExNameEditText = (EditText) findViewById(R.id.edit_ex_name);
         mWeightEditText = (EditText) findViewById(R.id.edit_weight_amnt);
         mRepsEditText = (EditText) findViewById(R.id.edit_reps_num);
+        mSetsEditText = (EditText) findViewById(R.id.edit_sets_num);
         mNotesEditText = (EditText) findViewById(R.id.edit_notes);
 
         // Set up Touch Listener on all input fields to see if a field has been modified
         mExNameEditText.setOnTouchListener(mTouchListener);
         mWeightEditText.setOnTouchListener(mTouchListener);
         mRepsEditText.setOnTouchListener(mTouchListener);
+        mSetsEditText.setOnTouchListener(mTouchListener);
         mNotesEditText.setOnTouchListener(mTouchListener);
         tvDate.setOnTouchListener(mTouchListener);
 
@@ -109,6 +112,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
                 ExerciseContract.ExerciseEntry.C_EX_NAME,
                 ExerciseContract.ExerciseEntry.C_WEIGHT,
                 ExerciseContract.ExerciseEntry.C_REPS,
+                ExerciseContract.ExerciseEntry.C_SETS,
                 ExerciseContract.ExerciseEntry.C_DATE,
                 ExerciseContract.ExerciseEntry.C_NOTES };
         // start a new thread
@@ -122,6 +126,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
             int exNameColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_EX_NAME);
             int exWeightColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_WEIGHT);
             int exRepsColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_REPS);
+            int exSetsColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_SETS);
             int exDateColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_DATE);
             int exNoteColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_NOTES);
 
@@ -129,6 +134,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
             String exName = c.getString(exNameColIndex);
             String exWeight = c.getString(exWeightColIndex);
             String exReps = c.getString(exRepsColIndex);
+            String exSets = c.getString(exSetsColIndex);
             String exDate = c.getString(exDateColIndex);
             String exNote = c.getString(exNoteColIndex);
 
@@ -136,6 +142,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
             mExNameEditText.setText(exName);
             mWeightEditText.setText(exWeight);
             mRepsEditText.setText(exReps);
+            mSetsEditText.setText(exSets);
             mNotesEditText.setText(exNote);
             tvDate.setText(exDate);
         }
@@ -148,6 +155,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         mExNameEditText.setText("");
         mWeightEditText.setText("");
         mRepsEditText.setText("");
+        mSetsEditText.setText("");
         mNotesEditText.setText("");
         tvDate.setText("");
     }
@@ -265,6 +273,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         String exNameString = mExNameEditText.getText().toString().trim();
         String weightString = mWeightEditText.getText().toString().trim();
         String repsString = mRepsEditText.getText().toString().trim();
+        String setsString = mSetsEditText.getText().toString().trim();
         String notesString = mNotesEditText.getText().toString().trim();
         String dateString = tvDate.getText().toString().trim();
 
@@ -280,6 +289,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         values.put(ExerciseContract.ExerciseEntry.C_EX_NAME, exNameString);
         values.put(ExerciseContract.ExerciseEntry.C_WEIGHT, weightString);
         values.put(ExerciseContract.ExerciseEntry.C_REPS, repsString);
+        values.put(ExerciseContract.ExerciseEntry.C_SETS, setsString);
         values.put(ExerciseContract.ExerciseEntry.C_NOTES, notesString);
         values.put(ExerciseContract.ExerciseEntry.C_DATE, dateString);
 

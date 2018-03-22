@@ -40,14 +40,21 @@
             <EditText
                 android:id="@+id/edit_weight_amnt"
                 android:hint="@string/hint_weight_amnt"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 style="@style/ExerciseFieldStyle" />
 
-            <!-- Amount of weight -->
+            <!-- number of reps -->
             <EditText
                 android:id="@+id/edit_reps_num"
                 android:hint="@string/hint_reps_num"
-                android:inputType="textCapWords"
+                android:inputType="number"
+                style="@style/ExerciseFieldStyle" />
+
+            <!-- number of sets -->
+            <EditText
+                android:id="@+id/edit_sets_num"
+                android:hint="Enter Number of Sets"
+                android:inputType="number"
                 style="@style/ExerciseFieldStyle" />
 
         </LinearLayout>

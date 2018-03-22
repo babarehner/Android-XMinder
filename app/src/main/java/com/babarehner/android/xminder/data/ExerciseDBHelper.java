@@ -10,6 +10,7 @@ import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_NOTES;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_ORDER;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_REPS;
+import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_SETS;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.C_WEIGHT;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry.TSTRENGTH;
 import static com.babarehner.android.xminder.data.ExerciseContract.ExerciseEntry._IDS;
@@ -40,6 +41,7 @@ public class ExerciseDBHelper extends SQLiteOpenHelper {
                 + C_EX_NAME + " TEXT NOT NULL, "
                 + C_WEIGHT + " INTEGER, "
                 + C_REPS + " INTEGER, "
+                + C_SETS + " INTEGER, "
                 + C_GRAPHIC + " TEXT, "
                 + C_NOTES + " TEXT, "
                 + C_DATE + " TEXT);";

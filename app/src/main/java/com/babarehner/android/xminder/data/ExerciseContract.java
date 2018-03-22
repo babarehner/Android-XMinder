@@ -68,6 +68,7 @@ public final class ExerciseContract {
         public static final String C_GRAPHIC = "Graphic";
         public static final String C_NOTES = "Notes";
         public static final String C_DATE = "Date";
+        public static final String C_SETS = "Sets";
 
         // name of table for cardio training
         public static final String TCARDIO = "TCardio";
