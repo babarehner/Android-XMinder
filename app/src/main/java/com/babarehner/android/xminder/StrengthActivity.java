@@ -79,7 +79,8 @@ public class StrengthActivity extends AppCompatActivity implements
         String[] projection = {ExerciseContract.ExerciseEntry._IDS,
                             ExerciseContract.ExerciseEntry.C_EX_NAME,
                             ExerciseContract.ExerciseEntry.C_WEIGHT,
-                            ExerciseContract.ExerciseEntry.C_REPS};
+                            ExerciseContract.ExerciseEntry.C_REPS,
+                            ExerciseContract.ExerciseEntry.C_SETS};
 
         // The loader will executer the ContentProvider's query method on a background thread
         return new CursorLoader(this, ExerciseContract.ExerciseEntry.STRENGTH_URI, projection,

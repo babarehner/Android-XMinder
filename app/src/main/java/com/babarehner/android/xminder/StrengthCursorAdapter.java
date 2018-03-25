@@ -44,20 +44,22 @@ public class StrengthCursorAdapter extends CursorAdapter {
         TextView exNameTextView = (TextView) v.findViewById(R.id.exercise_name);
         TextView effortTextView = (TextView) v.findViewById(R.id.effort_text_view);
         TextView durationTextView = (TextView) v.findViewById(R.id.duration_text_view);
+        TextView setsTextView = (TextView) v.findViewById(R.id.set_num_text_view);
 
         int exNameColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_EX_NAME);
         int exWeightColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_WEIGHT);
         int exRepsColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_REPS);
+        int exSetsColIndex = c.getColumnIndex(ExerciseContract.ExerciseEntry.C_SETS);
 
         String exName = c.getString(exNameColIndex);
         String exWeight = c.getString(exWeightColIndex);
         String exReps = c.getString(exRepsColIndex);
+        String exSets = c.getString(exSetsColIndex);
 
         exNameTextView.setText(exName);
         effortTextView.setText(exWeight);
         durationTextView.setText(exReps);
-
-
+        setsTextView.setText((exSets));
 
     }
 }

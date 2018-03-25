@@ -14,45 +14,71 @@
 
     <LinearLayout
         android:id="@+id/text_container"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/list_item_height"
+        android:layout_weight="1"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/image"
         android:paddingLeft="16dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/exercise_name"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:textAlignment="gravity"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white"
             tools:text="Exercise Name" />
 
-
-        <TextView
-            android:id="@+id/effort_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_gravity="bottom"
-            android:textAppearance="?android:textAppearance"
-            android:textColor="@android:color/white"
-            tools:text= "Effort 2.5"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/duration_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="top"
-            android:textAppearance="?android:textAppearance"
-            android:textColor="@android:color/white"
-            tools:text= "Time- 10 minutes"/>
+
+            <TextView
+                android:id="@+id/effort_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textAlignment="gravity"
+                android:layout_weight="1"
+                android:textAppearance="?android:textAppearance"
+                android:textColor="@android:color/white"
+                tools:text="Effort 2.5"
+                android:paddingRight="@dimen/activity_margin"/>
+
+            <TextView
+                android:id="@+id/duration_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textAlignment="gravity"
+                android:layout_weight="1"
+                android:textAppearance="?android:textAppearance"
+                android:textColor="@android:color/white"
+                tools:text="Time- 10 minutes"
+                android:paddingRight="@dimen/activity_margin"/>
+
+            <TextView
+                android:id="@+id/set_num_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:textAlignment="gravity"
+                android:textAppearance="?android:textAppearance"
+                android:textColor="@android:color/white"
+                tools:text="Sets- 2"
+                android:paddingRight="@dimen/activity_margin"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
