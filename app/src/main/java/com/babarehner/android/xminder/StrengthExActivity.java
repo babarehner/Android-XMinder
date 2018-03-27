@@ -46,7 +46,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
     private EditText mSetsEditText;
     private EditText mNotesEditText;
 
-    private TextView tvDate;
+    private EditText tvDate;
     private Button pickDate;
     private int mYear, mMonth, mDay;
 
@@ -86,7 +86,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         }
 
         // initialization required or it crashes
-        tvDate = (TextView) findViewById(R.id.tvDate);
+        tvDate = (EditText) findViewById(R.id.tvDate);
         // Find all input views to read from
         mExNameEditText = (EditText) findViewById(R.id.edit_ex_name);
         mWeightEditText = (EditText) findViewById(R.id.edit_weight_amnt);
@@ -100,7 +100,6 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         mRepsEditText.setOnTouchListener(mTouchListener);
         mSetsEditText.setOnTouchListener(mTouchListener);
         mNotesEditText.setOnTouchListener(mTouchListener);
-        tvDate.setOnTouchListener(mTouchListener);
 
         getDate();
     }
@@ -163,13 +162,17 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
     // set up date picker
     public void getDate() {
 
-        tvDate = (TextView) findViewById(R.id.tvDate);
+        tvDate = (EditText) findViewById(R.id.tvDate);
         pickDate = (Button) findViewById(R.id.pick_date);
 
         // add a click listener to the button
         pickDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // if on edit view and date button is clicked changed boolean in touch listener
+                if (mCurrentStrengthExUri != null) {
+                    mExerciseChanged = true;
+                }
                 showDialog(DATE_DIALOG_ID);
             }
         });

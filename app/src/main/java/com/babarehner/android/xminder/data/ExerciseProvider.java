@@ -134,8 +134,10 @@ public class ExerciseProvider extends ContentProvider {
             throw new IllegalArgumentException("Exercise name required in insertStrengthEx to insert exercise");
         }
 
+
         String exWeight = values.getAsString(ExerciseContract.ExerciseEntry.C_WEIGHT);
         String exReps = values.getAsString(ExerciseContract.ExerciseEntry.C_REPS);
+        String exSets = values.getAsString(ExerciseContract.ExerciseEntry.C_SETS);
         String exDate = values.getAsString(ExerciseContract.ExerciseEntry.C_DATE);
         String exNote = values.getAsString(ExerciseContract.ExerciseEntry.C_NOTES);
 
