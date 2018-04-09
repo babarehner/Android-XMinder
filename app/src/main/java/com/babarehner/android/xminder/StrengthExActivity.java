@@ -38,6 +38,8 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
 
     public static final int EXISTING_EXERCISE_LOADER = 9;
 
+    private final String LOG_TAG = StrengthExActivity.class.getSimpleName();
+
     private Uri mCurrentStrengthExUri;
 
     private EditText mExNameEditText;
@@ -46,7 +48,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
     private EditText mSetsEditText;
     private EditText mNotesEditText;
 
-    private EditText tvDate;
+    private TextView tvDate;
     private Button pickDate;
     private int mYear, mMonth, mDay;
 
@@ -86,7 +88,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
         }
 
         // initialization required or it crashes
-        tvDate = (EditText) findViewById(R.id.tvDate);
+        tvDate = (TextView) findViewById(R.id.tvDate);
         // Find all input views to read from
         mExNameEditText = (EditText) findViewById(R.id.edit_ex_name);
         mWeightEditText = (EditText) findViewById(R.id.edit_weight_amnt);
@@ -162,7 +164,7 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
     // set up date picker
     public void getDate() {
 
-        tvDate = (EditText) findViewById(R.id.tvDate);
+        tvDate = (TextView) findViewById(R.id.tvDate);
         pickDate = (Button) findViewById(R.id.pick_date);
 
         // add a click listener to the button
@@ -298,7 +300,12 @@ public class StrengthExActivity extends AppCompatActivity implements LoaderManag
 
         if (mCurrentStrengthExUri == null) {
             // a new exercise
+            // ***********
+            Log.v(LOG_TAG, "in saveRecord " + ExerciseContract.ExerciseEntry.STRENGTH_URI.toString() + "\n" + values);
+
             Uri newUri = getContentResolver().insert(ExerciseContract.ExerciseEntry.STRENGTH_URI, values);
+            // ************
+
             if (newUri == null) {
                 Toast.makeText(this, getString(R.string.strengthex_insert_exercise_failed),
                         Toast.LENGTH_SHORT).show();
